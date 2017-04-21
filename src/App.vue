@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>北京小葵公司前端工程师招聘题目说明</h1>
+    源代码<a href="https://github.com/dongqs/xiaokui">https://github.com/dongqs/xiaokui</a>
     <ul>
       <li>0.如认为题目过于简单可不做 直接联系我们</li>
       <li>1.请每隔10分钟commit一次 这很重要</li>
