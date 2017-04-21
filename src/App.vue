@@ -1,23 +1,33 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <h1>北京小葵公司前端工程师招聘题目说明</h1>
+    <ul>
+      <li>1.请每隔10分钟commit一次 这很重要</li>
+      <li>2.按照设计图完成前端</li>
+      <li>3.建议使用bootstrap或类似前端框架</li>
+      <li>4.分component</li>
+      <li>5.实现前端搜索</li>
+    </ul>
+
+    <h3>这是设计图</h3>
+    <img src="/static/part1.png"></img>
+    <img src="/static/part2.png"></img>
+
+    <hr>
+    <h3>请在下面这个半成品的基础上继续</h3>
+    <hr>
+
+    <template v-if="db">
+      <router-view :db="db"></router-view>
+    </template>
+    <template v-else>
+      <h3>Loading</h3>
+    </template>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  props: ['db']
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
