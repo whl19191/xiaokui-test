@@ -2,11 +2,34 @@
   <div class="wrap">
     <h2>热电厂二期项目</h2>
     <b-form-input type="text" placeholder="搜索过滤建筑物名称" ></b-form-input>
-    <b-card class="mb-2"
-            title="Card title"
-            sub-title="Card subtitle"
-    >
-    </b-card>
+    <h4>单体建筑</h4>
+    <div v-for="building in buildings">
+      <b-card class="mb-2">
+          <h5>{{ building.name }}</h5>
+          <ul>
+            <li>
+              计划开始
+              <p>{{ building.start_date }}</p>
+            </li>
+            <li>
+              计划完成
+              <p>{{ building.end_date }}</p>
+            </li>
+            <li>
+              计划工期
+              <p>{{ building.total_duration }}</p>
+            </li>
+            <li>
+              已经施工
+              <p>{{ building.total_elapsed }}</p>
+            </li>
+          </ul>
+          <p>实际进度</p>
+          <b-progress v-model="counter" :precision="1" show-progress animated></b-progress>
+          <p>计划进度</p>
+      </b-card>
+    </div>
+    
     <div v-for="building in buildings">
       <h3>{{ building.name }}</h3>
       <ul>
@@ -47,7 +70,8 @@ export default {
     let buildings = this.db.buildings
 
     return {
-      buildings: buildings
+      buildings: buildings,
+      counter: 45
     }
   }
 }
@@ -74,6 +98,46 @@ export default {
         }
         input::-webkit-input-placeholder {
           color:#bcbbbc;
+        }
+        h4{
+          color:#c5c5c5;
+          line-height:4rem;
+        }
+        .card{
+          background: #f8f8f8;
+          border:none;
+          .card-block{
+            padding:2rem;
+
+            h5{
+              text-align:center;
+              line-height:3rem;
+            }
+            ul{
+              display:flex;
+              list-style:none;
+              padding:0;
+              justify-content:space-between;
+              li{
+                color:#a8a8a8;
+                line-height:2rem;
+                p{
+                  color:#333;
+                }
+              }
+            }
+            p{
+              line-height:3rem;
+              margin-bottom:0;
+              color:#a8a8a8;
+            }
+            .progress{
+              background:#ecf0f1;
+              .progress-bar{
+                background:#3498db;
+              }
+            }
+          }
         }
     }
 </style>
