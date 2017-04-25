@@ -70,8 +70,7 @@ export default {
     let buildings = this.db.buildings
 
     return {
-      buildings: buildings,
-      counter: 45
+      buildings: buildings
     }
   }
 }
