@@ -1,7 +1,12 @@
 <template>
-  <div>
+  <div class="wrap">
     <h2>热电厂二期项目</h2>
-    <input placeholder="搜索过滤建筑物名称">
+    <b-form-input type="text" placeholder="搜索过滤建筑物名称" ></b-form-input>
+    <b-card class="mb-2"
+            title="Card title"
+            sub-title="Card subtitle"
+    >
+    </b-card>
     <div v-for="building in buildings">
       <h3>{{ building.name }}</h3>
       <ul>
@@ -47,3 +52,28 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" rel="stylesheet/scss"> 
+    .wrap{
+        max-width:1000px;
+        margin:0 auto;
+        padding:5%;
+        
+        h2{
+          line-height:3rem;
+        }
+        .form-control{
+          border:none;
+          background:#f8f8f8;
+          line-height:3rem;
+          font-size:17px;
+          margin-bottom:1rem;
+          &:focus{
+            background:#f8f8f8;
+          }
+        }
+        input::-webkit-input-placeholder {
+          color:#bcbbbc;
+        }
+    }
+</style>
