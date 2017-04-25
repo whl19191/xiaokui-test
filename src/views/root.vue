@@ -25,10 +25,18 @@
               <p>{{ building.total_elapsed }}</p>
             </li>
           </ul>
-          <p>实际进度</p>
-          <b-progress :value='Math.round(building.real_progress * 100)' show-progress animated></b-progress>
-          <b-progress :value='Math.round(building.plan_progress * 100)' show-progress animated></b-progress>
-          <p>计划进度</p>
+          <div class="progress-wrap">
+              <p>实际进度</p>
+              <div class="progress">
+                  <div role="progressbar"  class="progress-bar progress-bar-striped progress-bar-animated" :style="'width:'+Math.round(building.real_progress * 100)+'%'">
+                      <span>{{Math.round(building.real_progress * 100) + '%'}}</span>
+                  </div>
+                  <div role="progressbar"  class="progress-bar progress-bar-striped progress-bar-animated" :style="'width:'+Math.round(building.plan_progress * 100)+'%'" style="background:#333;">
+                      <span style="top:1rem;color:#333;">{{Math.round(building.plan_progress * 100) + '%'}}</span>
+                  </div>
+              </div>
+              <p>计划进度</p>
+          </div>
       </b-card>
     </div>
 
@@ -135,13 +143,28 @@ export default {
               margin-bottom:0;
               color:#a8a8a8;
             }
+          }
+        }
+        .progress-wrap{
             .progress{
               background:#ecf0f1;
+              position: relative;
+              height:16px;
+              overflow:visible;
               .progress-bar{
                 background:#3498db;
+                position: absolute;
+                border-radius: .25rem;
+                span{
+                    position: absolute;
+                    right:0;
+                    top:-3rem;
+                    line-height: 3rem;
+                    font-size: 1rem;
+                    color:#3498db;
+                }
               }
             }
-          }
         }
     }
 </style>
