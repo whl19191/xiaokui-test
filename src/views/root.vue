@@ -9,15 +9,16 @@
           <ul>
             <li>
               计划开始
-              <p>{{ building.start_date }}</p>
+              <p>{{ (building.start_date).slice(0,(building.start_date).indexOf('T')).split('-').join('')}}</p>
             </li>
             <li>
               计划完成
-              <p>{{ building.end_date }}</p>
+              <p>{{ (building.end_date).slice(0,(building.start_date).indexOf('T')).split('-').join('')}}</p>
             </li>
             <li>
               计划工期
               <p>{{ building.total_duration }}</p>
+
             </li>
             <li>
               已经施工
@@ -25,11 +26,12 @@
             </li>
           </ul>
           <p>实际进度</p>
-          <b-progress v-model="counter" :precision="1" show-progress animated></b-progress>
+          <b-progress :value='Math.round(building.real_progress * 100)' show-progress animated></b-progress>
+          <b-progress :value='Math.round(building.plan_progress * 100)' show-progress animated></b-progress>
           <p>计划进度</p>
       </b-card>
     </div>
-    
+
     <div v-for="building in buildings">
       <h3>{{ building.name }}</h3>
       <ul>
@@ -72,16 +74,19 @@ export default {
     return {
       buildings: buildings
     }
+  },
+  computed: {
+    progress () { return Math.round(this.building.plan_progress * 100) }
   }
 }
 </script>
 
-<style lang="scss" rel="stylesheet/scss"> 
+<style lang="scss" rel="stylesheet/scss">
     .wrap{
         max-width:1000px;
         margin:0 auto;
         padding:5%;
-        
+
         h2{
           line-height:3rem;
         }
